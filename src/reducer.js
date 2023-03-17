@@ -12,7 +12,7 @@ function reducer(state = [], action) {
 				},
 			];
 		case actions.UPDATE_FILES:
-			return state.filter((file) => file.id !== action.payload.id);
+			return state.filter((file) => file.description !== action.payload.name);
 		default:
 			return state;
 	}

@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 		store.dispatch({
 			type: actions.UPDATE_FILES,
 			payload: {
-				id: 2,
+				name: "test442",
 			},
 		});
 		res.send(store.getState());
