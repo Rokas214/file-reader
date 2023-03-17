@@ -12,13 +12,11 @@ router.get("/", (req, res) => {
 			throw err;
 		}
 
-		files.forEach((file) => {
-			store.dispatch({
-				type: actions.ADD_FILES,
-				payload: {
-					description: file,
-				},
-			});
+		store.dispatch({
+			type: actions.UPDATE_FILES,
+			payload: {
+				id: 2,
+			},
 		});
 		res.send(store.getState());
 	});
