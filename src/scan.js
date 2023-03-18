@@ -13,11 +13,25 @@ router.get("/", (req, res) => {
 		}
 
 		store.dispatch({
-			type: actions.UPDATE_FILES,
-			payload: {
-				name: "test442",
-			},
+			type: actions.CLEAN_STATE,
 		});
+
+		files.forEach((file) => {
+			store.dispatch({
+				type: actions.ADD_FILES,
+				payload: {
+					description: file,
+				},
+			});
+		});
+		// for (let i = 0; i < files.length; i++) {
+		// 	store.dispatch({
+		// 		type: actions.UPDATE_FILES,
+		// 		payload: {
+		// 			name: files,
+		// 		},
+		// 	});
+		// }
 		res.send(store.getState());
 	});
 });

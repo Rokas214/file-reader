@@ -11,8 +11,22 @@ function reducer(state = [], action) {
 					active: true,
 				},
 			];
+		case actions.CLEAN_STATE:
+			return (state = []);
 		case actions.UPDATE_FILES:
-			return state.filter((file) => file.description !== action.payload.name);
+			return [
+				...state,
+				{
+					id: ++lastId,
+					description: action.payload.description,
+					active: true,
+				},
+			];
+		// return state.filter((file) => file.description !== action.payload.name);
+		// case actions.UPDATE_FILES:
+		// 	return state.map((file) =>
+		// 		file.name !== action.payload.name ? file : { ...file, active: false }
+		// 	);
 		default:
 			return state;
 	}
