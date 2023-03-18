@@ -1,32 +1,25 @@
 const actions = require("./actionTypes.js");
-let lastId = 0;
 function reducer(state = [], action) {
 	switch (action.type) {
 		case actions.ADD_FILES:
-			return [
-				...state,
-				{
-					id: ++lastId,
-					description: action.payload.description,
-					active: true,
-				},
-			];
-		case actions.CLEAN_STATE:
-			return (state = []);
+			return [...state, ...action.payload];
 		case actions.UPDATE_FILES:
-			return [
-				...state,
-				{
-					id: ++lastId,
-					description: action.payload.description,
-					active: true,
-				},
-			];
-		// return state.filter((file) => file.description !== action.payload.name);
-		// case actions.UPDATE_FILES:
-		// 	return state.map((file) =>
-		// 		file.name !== action.payload.name ? file : { ...file, active: false }
-		// 	);
+			const newFiles = action.payload;
+
+			state = state.map((currentFile) => {
+				const isFilePresent = newFiles.some(
+					(newFile) => newFile.filename === currentFile.filename
+				);
+				if (isFilePresent) {
+					return action.payload;
+				}
+				return {
+					...currentFile,
+					active: false,
+				};
+			});
+
+			return [...state, ...newFiles];
 		default:
 			return state;
 	}
