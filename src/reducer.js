@@ -8,18 +8,26 @@ function reducer(state = [], action) {
 
 			state = state.map((currentFile) => {
 				const isFilePresent = newFiles.some(
-					(newFile) => newFile.filename === currentFile.filename
+					(newFile) => newFile.name === currentFile.name
 				);
+
 				if (isFilePresent) {
-					return action.payload;
+					return {
+						...currentFile,
+						active: true,
+					};
 				}
 				return {
 					...currentFile,
 					active: false,
 				};
 			});
-
-			return [...state, ...newFiles];
+			const filteredState = state.filter((item) => {
+				if (item.active === false) {
+					return item;
+				}
+			});
+			return [filteredState, ...newFiles];
 		default:
 			return state;
 	}
