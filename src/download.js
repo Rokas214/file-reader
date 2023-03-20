@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const actions = require("./actionTypes");
+const download = require("download");
 const fs = require("fs");
 
 router.get("/", (req, res) => {
 	try {
-		const download = require("download");
 		const file = "http://localhost:3000/list";
 		const filePath = `files`;
 		download(file, filePath).then(() => {
