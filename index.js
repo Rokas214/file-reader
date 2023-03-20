@@ -1,14 +1,11 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-const list = require("./src/list");
-const scan = require("./src/scan");
-const download = require("./src/download");
-const store = require("./src/store");
-const actions = require("./src/actionTypes");
 require("dotenv").config();
-
 app.use(express.json());
+
+const { list, scan, download, store, actions } = require("./src");
+
 app.use("/list", list);
 app.use("/scan", scan);
 app.use("/download-state", download);

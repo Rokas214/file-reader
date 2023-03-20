@@ -3,8 +3,8 @@ const store = require("./store.js");
 const fs = require("fs");
 const router = express.Router();
 const actions = require("./actionTypes.js");
-
-const dir = "./test/";
+require("dotenv").config();
+const dir = process.env.DIR;
 
 router.get("/", (req, res) => {
 	try {
