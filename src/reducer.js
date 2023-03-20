@@ -1,5 +1,5 @@
 const actions = require("./actionTypes.js");
-const PDFDocument = require("pdfkit");
+
 function reducer(state = [], action) {
 	switch (action.type) {
 		case actions.ADD_FILES:

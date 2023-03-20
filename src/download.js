@@ -1,12 +1,7 @@
-const PDFDocument = require("pdfkit");
-const store = require("./store");
 const express = require("express");
 const router = express.Router();
 const actions = require("./actionTypes");
 const fs = require("fs");
-const { object } = require("joi");
-const dir = "./test/";
-require("dotenv").config();
 
 router.get("/", (req, res) => {
 	try {
