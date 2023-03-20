@@ -4,7 +4,7 @@ const fs = require("fs");
 require("dotenv").config();
 app.use(express.json());
 
-const { list, scan, download, store, actions } = require("./src");
+const { list, scan, download, store, actions } = require("./src/exports");
 
 app.use("/list", list);
 app.use("/scan", scan);
