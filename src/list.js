@@ -7,7 +7,11 @@ const actions = require("./actionTypes.js");
 const dir = "./test/";
 
 router.get("/", (req, res) => {
-	res.send(store.getState());
+	try {
+		res.send(store.getState());
+	} catch (err) {
+		res.status(400).send(err);
+	}
 });
 
 module.exports = router;

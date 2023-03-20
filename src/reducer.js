@@ -1,4 +1,5 @@
 const actions = require("./actionTypes.js");
+const PDFDocument = require("pdfkit");
 function reducer(state = [], action) {
 	switch (action.type) {
 		case actions.ADD_FILES:
@@ -22,12 +23,16 @@ function reducer(state = [], action) {
 					active: false,
 				};
 			});
-			const filteredState = state.filter((item) => {
-				if (item.active === false) {
-					return item;
-				}
+
+			const filteredState = state.filter((item) => !item.active);
+			return [...filteredState, ...newFiles];
+		case actions.DOWNLOAD:
+			const doc = new PDFDocument();
+			doc.text(state, 100, 300).font("Times-Roman", 13);
+			doc.end();
+			writeHead(200, {
+				"Content-Type": "application/pdf",
 			});
-			return [filteredState, ...newFiles];
 		default:
 			return state;
 	}
