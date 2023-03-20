@@ -8,11 +8,6 @@ const { object } = require("joi");
 const dir = "./test/";
 require("dotenv").config();
 
-// fs.writeFile('test/files', 'This is my text', function (err) {
-// 	if (err) throw err;
-// 	console.log('Replaced!');
-//   });
-
 router.get("/", (req, res) => {
 	try {
 		const download = require("download");
@@ -28,11 +23,3 @@ router.get("/", (req, res) => {
 });
 
 module.exports = router;
-
-// res.send("File downloaded");
-// const result = store.getState();
-// const res1 = JSON.stringify(result);
-// fs.writeFile("newfile.txt", res1, function (err) {
-// 	if (err) throw err;
-// 	console.log("File is created successfully.");
-// });
